@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shop Client</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	<script type="text/javascript" src="js/d3.js"></script>
+	<script type="text/javascript" src="js/chart.js"></script>
+	<script type="text/javascript" src="js/lodash.js"></script>
+	<script type="text/javascript" src="js/popper.js"></script>
+	<script type="text/javascript" src="js/axios.js"></script>
+	<script type="text/javascript" src="js/skripta.js"></script>
+</head>
+<body onload="loadPage()">
+	<div class="container">
+		<div class="row mt-3">
+			<button type="button" id="btnLogin" onclick="showLogin()" class="btn btn-lg btn-primary">Login</button>
+			<button type="button" id="btnRegister" onclick="showRegistration()" class="btn btn-lg btn-secondary mt-2">Register</button>
+			<div id="logout" style="display:none" class="mt-1">
+				<br /><br />
+				<h3>Logout</h3>
+				<br />
+				<button class="btn btn-warning" id="btnLogout" onclick="logout()" aria-describedby="tooltip">Logout</button>
+				<div id="tooltip" role="tooltip">
+					Click here to log out
+					<div id="arrow" data-popper-arrow></div>
+				</div>
+				<p id="info"></p>
+			</div>
+		</div>
+		
+		<div id="loginFormDiv" style="display:none">
+			<h3>Login</h3>
+			<form method="post" action="post/" id="loginForm" onsubmit="return loginUser()">
+				<p><label>Username: <input type="text" id="usernameLogin"></label></p>
+				<p><label>Password: <input type="password" id="passwordLogin"></label></p>
+				<br />
+				<p><button class="btn btn-success">Submit</button></p>
+			</form>
+		</div>
+
+		<div id="registerFormDiv" style="display:none">
+			<h3>Register</h3>
+			<form method="post" action="post/" id="registerForm" onsubmit="return registerUser()">
+				<p><label>Email: <input type="email" id="emailRegister"></label></p>
+				<p><label>Username: <input type="text" id="usernameRegister"></label></p>
+				<p><label>Password: <input type="password" id="passwordRegister"></label></p>
+				<p><label>Confirm password: <input type="password" id="confirmPasswordRegister"></label></p>
+				<br />
+				<p><button class="btn btn-success">Submit</button></p>
+			</form>
+			<p>Password value needs to meet following parameters:</p>
+			<ol style="display:inline-block;">
+				<li>
+					at least six characters
+				</li>
+				<li>
+					at least one numeric character
+				</li>
+				<li>
+					at least one non-alphanumeric character
+				</li>
+				<li>
+					at least one small leter
+				</li>
+				<li>
+					at least one capital letter
+				</li>
+			</ol>
+			<link />
+		</div>
+		<br />
+		<br />
+
+		<div id="data">
+		</div>
+		<div id="statisticsDiv" style="display:none;width: 40%;">
+			<canvas id="line-chart"></canvas>
+			<br /> <br />
+			<canvas id="pie-chart"></canvas>
+			<br /> <br />
+			<div id="d3Div"></div>
+		</div>
+		<div id="formDiv" style="display:none">
+			<form method="post" action="post/" id="sellerForm" onsubmit="return submitSellerForm()">
+				<p><label>Name: </label> <input class="form-control" id="sellerName" type="text" /></p>
+				<br />
+				<p><label>Surname: </label> <input class="form-control" id="sellerSurname" type="text" /></p>
+				<br />
+				<p><label>Year of birth: </label> <input class="form-control" id="sellerYear" type="number" min="1940" /></p>
+				<br />
+				<p><label>Shop: </label> <select class="form-control" id="sellerShop"></select></p>
+				<br />
+				<p><input type="submit" value="Submit" class="btn btn-success" /> 
+				<input type="reset" value="Cancel" class="btn btn-warning" onclick="cancelSellerForm()" /></p>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
